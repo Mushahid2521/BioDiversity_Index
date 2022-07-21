@@ -1,2 +1,5 @@
 # Project exclude paths
 /venv/
+test_code.py
+/build
+/dist
