@@ -2,15 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def _alpha_index(df, index='shannon', q=None, keep=False):
-    all_indices = ["Hill", "Renyi", "BergerParker",
-                   "Richness", "iSimpson", "gSimpson", "Shannon",
-                   "Chao1", "ACE", "Jackknife1", "Jackknife2",
-                   "Pielou", "Tail", "EF", "IF", "RLE", "RLI"]
-
-    if index not in all_indices:
-        raise ValueError("Please specify one of the following indices\n" + ", ".join(all_indices))
-
+def _get_index_value(df, index=None, q=None, keep=False):
     if index == "Hill":
         if q is None:
             raise ValueError("Please specify a q value")
@@ -79,6 +71,26 @@ def _alpha_index(df, index='shannon', q=None, keep=False):
             raise ValueError("Please specify a q value")
 
         return inverse_relative_evenness(df, q, keep)
+
+
+def _alpha_index(df, index='shannon', q=None, keep=False):
+    all_indices = ["Hill", "Renyi", "BergerParker",
+                   "Richness", "iSimpson", "gSimpson", "Shannon",
+                   "Chao1", "ACE", "Jackknife1", "Jackknife2",
+                   "Pielou", "Tail", "EF", "IF", "RLE", "RLI"]
+
+    if index != "All" and index not in all_indices:
+        raise ValueError("Please specify one of the following indices\n" + ", ".join(all_indices))
+
+    if index == "All":
+        all_indices_df = pd.DataFrame()
+        for idx in all_indices:
+            all_indices_df[idx] = _get_index_value(df, index=idx, q=2)
+
+        return all_indices_df
+
+    else:
+        return _get_index_value(df, index, q, keep)
 
 
 def reformat_file(df):

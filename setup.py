@@ -6,7 +6,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="pybiosci",
-    version="0.0.3",
+    version="0.0.5",
     author="Md. Mushahidul Islam Shamim",
     author_email="mushahidshamim@gmail.com",
     description="Python Bioscience package",
