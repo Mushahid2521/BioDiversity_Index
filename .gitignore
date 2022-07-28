@@ -4,3 +4,6 @@ test_code.py
 /build
 /dist
 .idea
+ src/__pycache__/
+src/pybiosci.egg-info/
+src/pybiosci/__pycache__/

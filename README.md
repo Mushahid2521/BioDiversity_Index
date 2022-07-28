@@ -16,4 +16,5 @@ df = pd.read_csv('data/simCounts.csv')
 print(alpha_index(df, index='Shannon'))
 ```
 
-The dataframe is expected to be in a definite format. Row represents the taxa and column represents each sample. Absolute read counts are taken as input and converted to relative abundance when required for an index.
+The dataframe is expected to be in a definite format. Row represents the taxa and column represents each sample. Absolute read counts are taken as input and converted to relative abundance when required for an index. You can specify `index=All` to get all indices as a feature table. 
+
